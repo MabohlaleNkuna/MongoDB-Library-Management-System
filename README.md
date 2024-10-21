@@ -18,8 +18,7 @@ This project is a simple **Library Management System** using **MongoDB**. It dem
     - [Update Operations](#update-operations)
     - [Delete Operations](#delete-operations)
 6. [Advanced Queries](#advanced-queries)
-7. [Backup Instructions](#backup-instructions)
-8. [Conclusion](#conclusion)
+
 
 ---
 
