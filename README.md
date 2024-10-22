@@ -19,12 +19,11 @@ This project is a simple **Library Management System** using **MongoDB**. It dem
     - [Delete Operations](#delete-operations)
 6. [Advanced Queries](#advanced-queries)
 
-
 ---
 
 ## Introduction
 
-This project focuses on the basic MongoDB commands and terminology needed to interact with a database via the MongoDB shell (Mongosh). It includes CRUD operations on collections such as **Books**, **Authors**, and **Patrons**, as well as more complex queries.
+This project focuses on the basic MongoDB commands and terminology needed to interact with a database via **MongoDB Compass**. It includes CRUD operations on collections such as **Books**, **Authors**, and **Patrons**, as well as more complex queries.
 
 ---
 
@@ -32,20 +31,37 @@ This project focuses on the basic MongoDB commands and terminology needed to int
 
 ### Prerequisites
 
-- **MongoDB Atlas Account**: Set up a free or paid cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-- **MongoDB Shell (Mongosh)**: Make sure you have **MongoDB shell** installed. If not, [install it here](https://www.mongodb.com/try/download/shell).
+- **MongoDB Compass**: Make sure you have **MongoDB Compass** installed. If not, [install it here](https://www.mongodb.com/try/download/compass).
+- **MongoDB Shell (Mongosh)**: You can also use **MongoDB Shell** for command-line operations. [Install it here](https://www.mongodb.com/try/download/shell).
 
-### Steps to Connect to MongoDB Atlas
+### Steps to Connect to MongoDB via MongoDB Compass
 
-1. After logging into MongoDB Atlas, create a new cluster if you haven't done so.
-2. Navigate to the **Database Access** tab, and create a user with a **username** and **password**. 
-3. Get the **connection string** from the **Connect** button in your Atlas cluster. Use the following command to connect to your cluster using MongoDB shell:
+1. Download and install **MongoDB Compass**.
+2. Launch **MongoDB Compass** and connect using `localhost:27017` (if you are running a local instance of MongoDB).
+3. Create a new database called `LibraryDB`.
+4. Once connected, you can begin creating collections and inserting documents.
 
-```bash
-mongosh "mongodb+srv://<cluster-url>/LibraryDB" --mabohlalenkuna --password 
-```
-**to create database run**
-```
-use LibraryDB
+---
 
-```
+## Database Creation
+
+Once connected to **MongoDB Compass**, create the `LibraryDB` database by simply entering `LibraryDB` in the database name field in **Compass** and clicking "Create Database."
+
+---
+
+## Collections and Documents
+
+### Books Collection
+
+To create the `Books` collection, navigate to **Compass**, select `LibraryDB`, and create a new collection called `Books`.
+
+Here’s an example of a document in the `Books` collection:
+
+```json
+{
+  "_id": 1,
+  "title": "1984",
+  "author_id": 1,
+  "published_year": 1949,
+  "available": true
+}
