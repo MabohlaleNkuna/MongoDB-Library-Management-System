@@ -51,26 +51,38 @@ db.authors.insertMany([
  db.books.find({ available: true })
 
 //UPDATE
-//Mark as Borrowed
+//Mark a book (_id: 3) as borrowed
 db.books.updateOne({ _id: 3 }, { $set: { available: false } })
-//Add a Genre
+//Add a genre to a book (_id: 8)
 db.books.updateOne({ _id: 8 }, { $addToSet: { genres: "Classic" } })
-//AddING Borrowed Book to Patron’s Record
+//Add a borrowed book to a patron (_id: 5)
 db.patrons.updateOne({ _id: 5 }, { $push: { borrowed_books: 6 } })
 
 //DELETE
- //Delete a Book by Title
+ //Delete a book by title (e.g., "Brave New World")
  db.books.deleteOne({ title: "Brave New World" })
- //Delete an Author
- db.authors.deleteOne({ _id: 3 })
- //Delete a Patron by ID
- db.patrons.deleteOne({ _id: 5 })
- //Find Books Published After 1950
+ //Delete an author by name 
+ db.authors.deleteOne({ name: "Jane Austen" })
+
+
+ //Advanced Queries
+ //Find all books published before 1950
  db.books.find({ published_year: { $gt: 1950 } })
-//Find All American Authors
+ 
+ //Find all patrons who have borrowed more than 1 book
+ db.books.aggregate([
+  { $unwind: "$genres" },
+  { $group: { _id: "$genres", total: { $sum: 1 } } }
+])
+//Find All American Authors (Using $eq)
 db.authors.find({ nationality: { $eq: "American" } })
+
 //Set All Books To Available
 db.books.updateMany({}, { $set: { available: true } })
+
+//Find All Books That Are Available And Published After 1950
+db.books.find({ $and: [ { available: true }, { published_year: { $gt: 1950 } } ] })
+
 //Increment the Published Year of "War and Peace" by 1
 db.books.updateOne({ _id: 8 }, { $inc: { published_year: 1 } })
 
